@@ -26,7 +26,7 @@
                     <td>{{$project->area}}</td>
                     <td>
                         <a href="{{route('admin.projects.show', $project)}}">View</a>
-                        <a href="#">Edit</a>
+                        <a href="{{route('admin.projects.edit', $project)}}">Edit</a>
                         <a href="#">Delete</a>
                     </td>
                 </tr>
