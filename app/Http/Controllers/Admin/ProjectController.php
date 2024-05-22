@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -34,6 +35,7 @@ class ProjectController extends Controller
         // validate
         $val_data = $request->validated();
         // dd($val_data);
+        $val_data['slug'] = Str::slug($request->title, '-');
 
         $image_path = Storage::put('uploads', $request->cover_image);
 
@@ -69,6 +71,8 @@ class ProjectController extends Controller
     {
         // validate
         $val_data = $request->validated();
+
+        $val_data['slug'] = Str::slug($request->title, '-');
 
         // check if request has a cover_image
         if ($request->has('cover_image')) {

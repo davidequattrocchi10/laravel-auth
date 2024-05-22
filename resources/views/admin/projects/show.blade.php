@@ -32,6 +32,11 @@
                 <br>
                 {{$project->final_goal}}
             </p>
+            <p>
+                <strong> Slug </strong>
+                <br>
+                {{$project->slug}}
+            </p>
         </div>
 
     </div>

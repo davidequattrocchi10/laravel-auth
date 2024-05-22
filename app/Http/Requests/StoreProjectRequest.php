@@ -23,6 +23,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'slug' => 'nullable',
             'description' => 'nullable',
             'final_goal' => 'nullable',
             'area' => 'nullable',
