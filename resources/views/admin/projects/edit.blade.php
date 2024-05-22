@@ -44,6 +44,12 @@
         </div>
 
 
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Image of project</label>
+            <input type="text" class="form-control" name="cover_image" id="cover_image" aria-describedby="coverImageHelper" placeholder="" value="{{old('cover_image', $project->cover_image)}}" />
+            <small id="coverImageHelper" class="form-text text-muted">Add the project Image here</small>
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Update</button>
 

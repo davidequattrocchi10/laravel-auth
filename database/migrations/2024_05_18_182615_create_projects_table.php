@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100)->unique();
             $table->text('description')->nullable();
-            $table->text('final_goal');
-            $table->string('area', 100);
+            $table->text('final_goal')->nullable();
+            $table->string('area', 100)->nullable();
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }

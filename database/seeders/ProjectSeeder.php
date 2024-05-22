@@ -20,6 +20,7 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->text(300);
             $project->final_goal = $faker->text(100);
             $project->area = $faker->words(5, true);
+            $project->cover_image = $faker->imageUrl(600, 400, 'Projects', true, $project->title, true, 'jpg');
             $project->save();
         }
     }
