@@ -3,7 +3,18 @@
 
 @section('content')
 
-<div class="container mt-3">
+<header class="bg-danger text-white py-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h3>Editing: {{$project->title}}</h3>
+        <a class="btn btn-secondary" href="{{route('admin.projects.index')}}">Cancel</a>
+    </div>
+</header>
+
+<div class="container mt-4">
+
+    @include('partials.errors')
+
+
     <form action="{{route('admin.projects.update', $project)}}" method="post">
         @csrf
         @method('PUT')
