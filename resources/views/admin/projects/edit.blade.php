@@ -15,7 +15,7 @@
     @include('partials.errors')
 
 
-    <form action="{{route('admin.projects.update', $project)}}" method="post">
+    <form action="{{route('admin.projects.update', $project)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -43,15 +43,24 @@
             <small id="areaHelper" class="form-text text-muted">Add the project area here</small>
         </div>
 
+        <div class="d-flex gap-3">
+            @if (Str::startsWith($project->cover_image, 'https://'))
+            <img src="{{$project->cover_image}}" alt="Image" width="100%">
 
-        <div class="mb-3">
-            <label for="cover_image" class="form-label">Image of project</label>
-            <input type="text" class="form-control" name="cover_image" id="cover_image" aria-describedby="coverImageHelper" placeholder="" value="{{old('cover_image', $project->cover_image)}}" />
-            <small id="coverImageHelper" class="form-text text-muted">Add the project Image here</small>
+            @else
+            <img src="{{asset('storage/' . $project->cover_image)}}" alt="Image">
+
+            @endif
+
+
+            <div class="mb-3">
+                <label for="cover_image" class="form-label">Upload cover image</label>
+                <input type="file" class="form-control" name="cover_image" id="cover_image" placeholder="cover_image" aria-describedby="coverImageHelper" />
+                <div id="coverImageHelper" class="form-text">Upload a cover image</div>
+            </div>
+
         </div>
-
-
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="mt-3 btn btn-primary">Update</button>
 
     </form>
 </div>

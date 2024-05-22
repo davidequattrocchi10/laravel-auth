@@ -16,7 +16,7 @@
     @include('partials.errors')
 
 
-    <form action="{{route('admin.projects.store')}}" method="post">
+    <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -43,10 +43,11 @@
         </div>
 
         <div class="mb-3">
-            <label for="cover_image" class="form-label">Image of project</label>
-            <input type="text" class="form-control" name="cover_image" id="cover_image" aria-describedby="coverImageHelper" placeholder="" />
-            <small id="coverImageHelper" class="form-text text-muted">Add the project Image here</small>
+            <label for="cover_image" class="form-label">Upload cover image</label>
+            <input type="file" class="form-control" name="cover_image" id="cover_image" placeholder="cover_image" aria-describedby="coverImageHelper" />
+            <div id="coverImageHelper" class="form-text">Upload a cover image</div>
         </div>
+
 
 
 

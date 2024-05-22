@@ -12,16 +12,28 @@
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col">
-            <p>{{$project->area}}</p>
+        <div class="col-6">
+            @if (Str::startsWith($project->cover_image, 'https://'))
+            <img src="{{$project->cover_image}}" alt="Image" width="100%">
+
+            @else
+            <img src="{{asset('storage/' . $project->cover_image)}}" alt="Image">
+
+            @endif
         </div>
-        <div class="col">
-            <p>{{$project->description}}</p>
-            <p>{{$project->final_goal}}</p>
+        <div class="col-6">
+            <p>
+                <strong>Description </strong>
+                <br>
+                {{$project->description}}
+            </p>
+            <p>
+                <strong> Final goal </strong>
+                <br>
+                {{$project->final_goal}}
+            </p>
         </div>
-        <div class="col">
-            <img src="{{$project->cover_image}}" alt="Image">
-        </div>
+
     </div>
 
 

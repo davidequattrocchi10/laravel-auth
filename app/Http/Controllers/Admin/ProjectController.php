@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -33,6 +34,10 @@ class ProjectController extends Controller
         // validate
         $val_data = $request->validated();
         // dd($val_data);
+
+        $image_path = Storage::put('uploads', $request->cover_image);
+
+        $val_data['cover_image'] = $image_path;
 
         //create
         Project::create($val_data);
@@ -65,6 +70,19 @@ class ProjectController extends Controller
         // validate
         $val_data = $request->validated();
 
+        // check if request has a cover_image
+        if ($request->has('cover_image')) {
+            // check if the current project has a cover_image
+            if ($project->cover_image) {
+                // delete old cover_image
+                Storage::delete($project->cover_image);
+            }
+            //upload new cover_image
+            $image_path = Storage::put('uploads', $request->cover_image);
+            //add new cover_image in data validation
+            $val_data['cover_image'] = $image_path;
+        }
+
         //update
         $project->update($val_data);
 
@@ -77,7 +95,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //delete
+
+        // check if the current project has a cover_image
+        if ($project->cover_image) {
+            // delete old cover_image
+            Storage::delete($project->cover_image);
+        }
+
+        //delete project
         $project->delete();
 
         //redirect

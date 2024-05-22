@@ -26,7 +26,7 @@ class UpdateProjectRequest extends FormRequest
             'description' => 'nullable',
             'final_goal' => 'nullable',
             'area' => 'nullable',
-            'cover_image' => 'nullable',
+            'cover_image' => 'nullable|image|max:800'
         ];
     }
 }
