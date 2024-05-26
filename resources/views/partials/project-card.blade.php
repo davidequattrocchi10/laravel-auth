@@ -1,5 +1,5 @@
 <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 border border-warning">
         <a href="{{route('projects.show', $project)}}">
             @if (Str::startsWith($project->cover_image, 'https://'))
             <img class="card-img-top" src="{{$project->cover_image}}" alt="Image" width="100%">

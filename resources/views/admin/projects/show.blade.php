@@ -10,9 +10,9 @@
     </div>
 </header>
 
-<div class="container mt-4">
+<div class="container mt-4 border border-primary p-2">
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 text-center my-2">
             @if (Str::startsWith($project->cover_image, 'https://'))
             <img loading="lazy" src="{{$project->cover_image}}" alt="Image" width="100%">
 

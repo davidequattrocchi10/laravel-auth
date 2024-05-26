@@ -10,7 +10,7 @@ background-size: cover; opacity: 0.85;">
             Projects
         </h1>
 
-        <p class="col-md-8 fs-4">Read our amazing blog</p>
+        <p class="col-md-8 fs-4" style="color: var(--bool-logo);">Read our amazing blog</p>
 
         <a href="#projects" class="btn btn-outline-warning">
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
