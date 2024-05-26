@@ -38,9 +38,12 @@ class ProjectController extends Controller
         // dd($val_data);
         $val_data['slug'] = Str::slug($request->title, '-');
 
-        $image_path = Storage::put('uploads', $request->cover_image);
+        // check if request has a cover_image
+        if ($request->has('cover_image')) {
+            $image_path = Storage::put('uploads', $request->cover_image);
 
-        $val_data['cover_image'] = $image_path;
+            $val_data['cover_image'] = $image_path;
+        }
 
         //create
         Project::create($val_data);
