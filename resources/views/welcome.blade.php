@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron p-2 mb-4 bg-light rounded-3">
+<div class="jumbotron p-2 bg-light rounded-3">
     <div class="container py-3">
 
-        <div class="logo_laravel">
+        <div class="logo">
             <img class="img-fluid rounded-circle" width="200" src="https://avatars.githubusercontent.com/u/75373080?v=4" alt="">
         </div>
 
-        <h1 class="display-5 fw-bold">
+        <h1 class="display-5 fw-bold" style="color: var(--bool-logo);">
             Welcome to Boolpress
         </h1>
 
@@ -18,9 +18,9 @@
 </div>
 
 </div>
-<div class="content">
-    <div class="container">
-        <h4>Welcome to a Collaborative Hub of Inspiration and Innovation</h4>
+<div class="content bg-dark p-2 mb-4">
+    <div class="container py-2" style="color: var(--bool-logo);">
+        <h3 class="py-2">Welcome to a Collaborative Hub of Inspiration and Innovation</h3>
 
         <p>This site is your one-stop shop for exploring a vast landscape of projects, big and small,
             that are shaping our world. Whether you're a seasoned professional, a curious student, or an aspiring entrepreneur,
@@ -33,19 +33,7 @@
     <div class="container">
         <div class="row">
             @forelse ($latest_projects as $project)
-            <div class="col">
-                <div class="card">
-                    @if (Str::startsWith($project->cover_image, 'https://'))
-                    <img class="card-img-top" src="{{$project->cover_image}}" alt="Image" width="100%">
-                    @else
-                    <img class="card-img-top" src="{{asset('storage/' . $project->cover_image)}}" alt="Image">
-                    @endif
-
-                    <div class="card-body">
-                        <h3>{{$project->title}}</h3>
-                    </div>
-                </div>
-            </div>
+            @include('partials.project-card')
 
             @empty
             <div class="col-12">
