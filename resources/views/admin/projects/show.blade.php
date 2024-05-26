@@ -14,14 +14,19 @@
     <div class="row">
         <div class="col-6">
             @if (Str::startsWith($project->cover_image, 'https://'))
-            <img src="{{$project->cover_image}}" alt="Image" width="100%">
+            <img loading="lazy" src="{{$project->cover_image}}" alt="Image" width="100%">
 
             @else
-            <img src="{{asset('storage/' . $project->cover_image)}}" alt="Image">
+            <img loading="lazy" src="{{asset('storage/' . $project->cover_image)}}" alt="Image">
 
             @endif
         </div>
         <div class="col-6">
+            <p class="metadata">
+                <strong>Type</strong>
+                <br>
+                {{$project->type ? $project->type->name : 'Uncategorized' }}
+            </p>
             <p>
                 <strong>Description </strong>
                 <br>
