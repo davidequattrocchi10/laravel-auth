@@ -86,7 +86,6 @@
                         </div>
                     </td>
                 </tr>
-
                 @empty
                 <tr class="">
                     <td scope="row" colspan="6">No projects yet!</td>
@@ -94,6 +93,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{$projects->links('vendor.pagination.bootstrap-5')}};
     </div>
 
 
