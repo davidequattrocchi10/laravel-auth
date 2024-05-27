@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use App\Http\Controllers\ProfileController;
@@ -30,6 +31,9 @@ Route::middleware(['auth', 'verified'])
 
         // Projects route here 
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+
+        // Types route here
+        Route::resource('types', TypeController::class);
     });
 
 
