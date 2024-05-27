@@ -17,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.projects.index', ['projects' => Project::orderByDesc('id')->paginate()]);
+        return view('admin.projects.index', ['projects' => Project::where('user_id', auth()->id())->orderByDesc('id')->paginate()]);
     }
 
     /**
@@ -45,6 +45,8 @@ class ProjectController extends Controller
             $val_data['cover_image'] = $image_path;
         }
 
+        $val_data['user_id'] = auth()->id();
+
         //create
         Project::create($val_data);
 
@@ -65,8 +67,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        if ($project->user_id == auth()->id()) {
+            $types = Type::all();
+            return view('admin.projects.edit', compact('project', 'types'));
+        }
+        abort(403, 'You cannot edit projects that do not belong to you!');
     }
 
     /**
@@ -74,6 +79,10 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+        if (auth()->id() != $project->user_id) {
+            abort(403, 'Did you really try to hack my app?');
+        }
+
         // validate
         $val_data = $request->validated();
 
@@ -104,6 +113,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if (auth()->id() != $project->user_id) {
+            abort(403, 'You cannot delete projects that do not belong to you');
+        }
+
 
         // check if the current project has a cover_image
         if ($project->cover_image) {
