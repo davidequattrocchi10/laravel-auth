@@ -26,6 +26,16 @@
                 <strong>Type</strong>
                 <br>
                 {{$project->type ? $project->type->name : 'Uncategorized' }}
+
+            <div class="technologies">
+                <strong>Technology</strong>
+                @forelse ($project->technologies as $tech)
+                <span class="badge bg-primary">{{$tech->name}}</span>
+                @empty
+                <span>N/A</span>
+
+                @endforelse
+            </div>
             </p>
             <p>
                 <strong>Description </strong>

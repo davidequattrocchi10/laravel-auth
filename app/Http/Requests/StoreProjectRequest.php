@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
             'title' => 'required',
             'type_id' => 'nullable|exists:types,id',
             'user_id' => 'nullable|exists:users,id',
+            'technologies' => 'exists:technologies,id', //this value is in the pivot table, don't put this value in the fillable inside the model
             'slug' => 'nullable',
             'description' => 'nullable',
             'final_goal' => 'nullable',
