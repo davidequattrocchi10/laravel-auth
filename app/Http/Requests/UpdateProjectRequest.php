@@ -24,6 +24,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => 'required',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id', //this value is in the pivot table, don't put this value in the fillable inside the model
             'slug' => 'nullable',
             'description' => 'nullable',
             'final_goal' => 'nullable',

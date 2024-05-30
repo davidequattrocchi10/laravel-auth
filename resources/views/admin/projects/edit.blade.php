@@ -35,6 +35,24 @@
             </select>
         </div>
 
+        <div class="mb-3 d-flex gap-3">
+            @foreach ($technologies as $tech)
+            <div class="form-check ">
+                @if( $errors->any())
+                <input class="form-check-input" type="checkbox" value="{{$tech->id}}" id="tech-{{$tech->id}}" name="technologies[]" {{in_array($tech->id, old('technologies', []))  ?  'checked' : '' }} />
+
+                @else
+                <input class="form-check-input" type="checkbox" value="{{$tech->id}}" id="tech-{{$tech->id}}" name="technologies[]" {{$project->technologies->contains($tech->id) ?  'checked' : '' }} />
+
+                @endif
+
+                <label class="form-check-label" for="tech-{{$tech->id}}"> {{$tech->name}} </label>
+
+
+            </div>
+            @endforeach
+        </div>
+
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>

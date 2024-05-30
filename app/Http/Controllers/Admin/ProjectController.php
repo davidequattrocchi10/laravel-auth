@@ -53,7 +53,11 @@ class ProjectController extends Controller
 
         //create
         $project = Project::create($val_data);
-        $project->technologies()->attach($val_data['technologies']);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($val_data['technologies']);
+        }
+
 
         //redirect
         return to_route('admin.projects.index')->with('message', 'Project Created successfully');
@@ -75,7 +79,8 @@ class ProjectController extends Controller
     {
         if ($project->user_id == auth()->id()) {
             $types = Type::all();
-            return view('admin.projects.edit', compact('project', 'types'));
+            $technologies = Technology::all();
+            return view('admin.projects.edit', compact('project', 'types', 'technologies'));
         }
         abort(403, 'You cannot edit projects that do not belong to you!');
     }
@@ -85,6 +90,8 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+        //dd($request->all());
+
         if (auth()->id() != $project->user_id) {
             abort(403, 'Did you really try to hack my app?');
         }
@@ -110,6 +117,10 @@ class ProjectController extends Controller
         //update
         $project->update($val_data);
 
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($val_data['technologies']);
+        }
+
         //redirect
         return to_route('admin.projects.index')->with('message', 'Project Updated successfully');
     }
@@ -119,6 +130,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        // these methods are disabled because we have cascadeOnDelete inside the pivot migration
+        //$project->technologies()->sync([]);
+        //$project->technologies()->detach();
+
+        // So when destroy a project, also destroy its connection with the tecnologies 
+
+
         if (auth()->id() != $project->user_id) {
             abort(403, 'You cannot delete projects that do not belong to you');
         }
