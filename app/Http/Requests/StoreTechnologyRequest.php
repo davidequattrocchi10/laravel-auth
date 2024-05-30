@@ -11,7 +11,7 @@ class StoreTechnologyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:technologies,name',
+            'description' => 'nullable',
+            'category' => 'nullable'
         ];
     }
 }

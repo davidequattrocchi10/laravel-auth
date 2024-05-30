@@ -19,16 +19,15 @@
     </div>
     @endif
 
-    <h1>Types</h1>
     <div class="table-responsive">
         <table class="table table-light">
             <thead>
                 <tr>
-                    <th scope="col" class="col-1">ID</th>
+                    <th scope="col" class="col-2">ID</th>
                     <th scope="col" class="col-2">Name</th>
                     <th scope="col" class="col-2">Slug</th>
-                    <th scope="col" class="col-5">Description</th>
-                    <th scope="col" class="col-2">Actions</th>
+                    <th scope="col" class="col-3">Total projects</th>
+                    <th scope="col" class="col-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +36,11 @@
                     <td scope="row">{{$type->id}}</td>
                     <td>{{$type->name}}</td>
                     <td>{{$type->slug}}</td>
-                    <td>{{$type->description}}</td>
+                    <td>
+                        <span class="badge bg-primary">
+                            {{count($type->projects)}}
+                        </span>
+                    </td>
                     <td>
                         <a class="btn btn-sm btn-primary my-1" href="{{route('admin.types.show', $type)}}">
                             <i class="fas fa-eye fa-xs fa-fw"></i> View</a>

@@ -22,7 +22,7 @@
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelper" placeholder="" value="{{old('name', $type->name)}}" />
-            <small id="nameHelper" class="form-text text-muted">Add the type name here</small>
+            <small id="nameHelper" class="form-text text-muted">Change type name here</small>
         </div>
 
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
@@ -34,6 +35,9 @@ Route::middleware(['auth', 'verified'])
 
         // Types route here
         Route::resource('types', TypeController::class);
+
+        // Technologies route here
+        Route::resource('technologies', TechnologyController::class);
     });
 
 

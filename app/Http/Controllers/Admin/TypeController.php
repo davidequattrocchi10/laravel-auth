@@ -83,7 +83,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //delete project
+        //delete type
         $type->delete();
 
         //redirect
