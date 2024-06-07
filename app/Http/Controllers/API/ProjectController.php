@@ -8,12 +8,20 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json([
-            'success' => 'true',
-            'results' => Project::with(['type', 'user', 'technologies'])->orderByDesc('id')->get()
-        ]);
+        if ($request->has('search')) {
+            return response()->json([
+                'success' => true,
+                'results' => Project::with(['type', 'user', 'technologies'])->orderByDesc('id')->where('title', 'LIKE', '%' . $request->search . '%')->paginate(6)
+
+            ]);
+        } else {
+            return response()->json([
+                'success' => true,
+                'results' => Project::with(['type', 'user', 'technologies'])->orderByDesc('id')->paginate(6)
+            ]);
+        }
     }
 
     public function show($id)
